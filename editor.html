@@ -1,0 +1,85 @@
+<div class="editor-row">
+
+  <div ng-repeat="warning in panel.warnings" class="grafana-target">
+    <div class="grafana-target-inner">
+
+      <ul class="grafana-segment-list">
+        <li class="grafana-target-segment" style="min-width: 15px; text-align: center">
+          {{targetLetters[$index]}}
+        </li>
+        <li class="grafana-target-segment">
+          Threshold
+        </li>
+        <li>
+          <select ng-model="warning.op" ng-change="get_data()" class="grafana-target-segment-input" style="width: 70px;">
+            <option value="gte">&gt;=</option>
+            <option value="lte">&lt;=</option>
+          </select>
+        </li>
+        <li>
+          <input type="text"
+            class="input-mini grafana-target-segment-input"
+            style="margin-right: 15px;"
+            ng-model="warning.threshold"
+            ng-blur="get_data()"
+            bs-tooltip="'Warning threshold'"
+            data-placement="right" />
+        </li>
+        <li class="grafana-target-segment">
+          Target
+        </li>
+        <li>
+          <input type="text"
+            class="input-mini grafana-target-segment-input span10"
+            ng-model="warning.target"
+            ng-blur="get_data()"
+            bs-tooltip="'Metric target string'"
+            data-placement="right" />
+        </li>
+     </ul>
+
+      <ul class="grafana-target-controls">
+        <li>
+          <a class="pointer" ng-click="removeWarning(warning)"><i class="icon icon-remove"></i></a>
+        </li>
+      </ul>
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+
+  <div class="grafana-target" style="margin-top: 10px;">
+    <div class="grafana-target-inner">
+
+      <ul class="grafana-segment-list">
+        <li class="grafana-target-segment grafana-target-segment-icon">
+          <i class="icon-wrench"></i>
+        </li>
+        <li class="grafana-target-segment">
+          Time Proximity(days)
+        </li>
+        <li>
+          <input type="text"
+            class="input-mini grafana-target-segment-input"
+            ng-model="panel.timeProximityDays"
+            ng-blur="get_data()"
+            bs-tooltip="'Time proximity in days.'"
+            data-placement="right"
+            spellcheck='false'
+            placeholder="60" />
+        </li>
+      </ul>
+
+    <div class="clearfix"></div>
+  </div>
+
+</div>
+
+<div class="editor-row" style="margin-top: 5px;">
+  <button class="btn btn-success pull-left" ng-click="addWarning()">
+    <i class="fa fa-database"></i>&nbsp;
+    Add Warning
+  </button>
+  <div class="clearfix"></div>
+</div>

@@ -1,0 +1,20 @@
+<table class="grafana-options-table">
+  <tr>
+    <th style="text-align:left;">Target</th>
+    <th style="text-align:left;white-space:nowrap;">Time Proximity</th>
+    <th style="text-align:left;padding-left:10px;">Confidence</th>
+    <th style="text-align:left;"></th>
+  </tr>
+  <tr ng-repeat="warningResult in data">
+    <td width="99%">{{warningResult.alias}}</td>
+    <td style="text-align:center;">{{panel.timeProximityDays}} Days</td>
+    <td style="text-align: left" bs-tooltip="'R-Squared: {{ warningResult.r_squared }}'" data-placement="top">
+      <i ng-repeat="s in warningResult.stars.whole" class="icon-star"></i><i ng-repeat="s in warningResult.stars.half" class="icon-star-half"></i>
+    </td>
+    <td style="text-align: center;">
+      <i ng-if="warningResult.state == 'ok'" class="icon-ok-sign" style="color:#77b300;"></i>
+      <i ng-if="warningResult.state == 'critical'" class="icon-exclamation" style="color:#b94a48;"></i>
+      <i ng-if="warningResult.state == 'warning'" class="icon-exclamation" style="color:yellow;"></i>
+    </td>
+  </tr>
+</table>
