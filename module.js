@@ -83,8 +83,13 @@ function (angular, app, $, _, kbn, moment) {
     $scope.updateTimeRange = function() {
         $scope.range = timeSrv.timeRange();
         $scope.rangeUnparsed = timeSrv.timeRange(false);
+        $scope.rangeUnparsed = {
+            'from': 'now-60d',
+            'to': 'now'
+        }
         $scope.resolution = Math.ceil($(window).width() * ($scope.panel.span / 12));
         $scope.interval = kbn.calculateInterval($scope.range, $scope.resolution, $scope.panel.interval);
+        $scope.interval = '1h'
     };
 
     $scope.targetFromWarning = function(warning) {
